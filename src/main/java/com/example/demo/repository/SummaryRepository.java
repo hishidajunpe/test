@@ -7,22 +7,22 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Summary;
 
-@Repository
+// @Repository
 public interface SummaryRepository extends JpaRepository<Summary, Integer>{
 
-	//指定されたユーザーIDからアカウント情報を取得
-	List<summary>findByUserId(Integer userId);
+	//	指定されたユーザーIDからアカウント情報を取得
+	List<Summary>findByUserId(Integer userId);
 	
-	//指定されたユーザーIDから〇月の収入データを取得
-	List<summary>findByUserIdAndStatusTrueAndMonthContains(Integer userId, Integer month);
+	//	指定されたユーザーIDから〇月の収入データを取得
+	List<Summary>findByUserIdAndStatusTrueAndMonthContains(Integer userId, Integer month);
 	
-	//指定されたユーザーIDから収入の全データを取得する
-	List<summary>findByUserIdAndStatusTrue(Integer userId);
+	//	指定されたユーザーIDから収入の全データを取得する
+	List<Summary>findByUserIdAndStatusTrue(Integer userId);
 	
-	//指定されたユーザーIDから〇月の支出のデータを取得
-	List<summary> findByUserIdAndStatusFalseAndMonthContains(Integer userId, Integer month);
+	//	指定されたユーザーIDから〇月の支出のデータを取得
+	List<Summary> findByUserIdAndStatusFalseAndMonthContains(Integer userId, Integer month);
 	
-	//指定されたユーザーIDから支出の全データを取得する
-	List<summary> findByUserIdAndStatusFalse(Integer userId);
+	//	指定されたユーザーIDから支出の全データを取得する
+	List<Summary> findByUserIdAndStatusFalse(Integer userId);
 	
 }
