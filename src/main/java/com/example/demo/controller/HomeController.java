@@ -16,6 +16,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.SummaryRepository;
 import com.example.demo.service.RegisterService;
 import com.example.demo.service.SpringUserService;
+import com.example.demo.service.UserService;
 
 @Controller
 public class HomeController {
@@ -25,6 +26,9 @@ public class HomeController {
 
 	@Autowired
 	private SpringUserService springUserService;
+	
+	@Autowired
+	private UserService userService;
 
 
 	// ログイン画面へ遷移する
@@ -35,7 +39,7 @@ public class HomeController {
 
 	// 新規登録画面へ遷移する
 	@GetMapping("/create")
-	public String create() {
+	public String create(User user,String username,String password) {
 		return "create";
 
 	}
@@ -51,7 +55,7 @@ public class HomeController {
 			String password = user.getPassword();
 
 			springUserService.createUser(username, password);
-
+			userService.createUser(username, password);
 			return "redirect:/index";
 		} catch (DuplicateKeyException e) {
 			bindingResult.addError(new FieldError("user", "username", "すでに存在するユーザーです。"));

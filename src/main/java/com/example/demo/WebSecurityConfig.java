@@ -18,6 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		//ログインページの制限なし
 		.antMatchers("/login").permitAll()
+		.antMatchers("/create").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		//ログインページ以後はログインページへ遷移するようにする
