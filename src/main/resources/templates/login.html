@@ -42,7 +42,14 @@
 			<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form-text text-muted"></span>
 		</div>
 	</div>
+	
+			<div class="d-grid gap-2">
+			<input type="submit" class="btn btn-secondary w-75" style="margin-top:50px" value="ログイン">
+		</div> 
+	</div>
 </form>
+
+
 
 <a href="/create" style="padding:40px">
 	新規登録はこちらから
