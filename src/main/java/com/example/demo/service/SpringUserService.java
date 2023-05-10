@@ -27,6 +27,7 @@ public class SpringUserService {
 				.build();
 		System.out.println(6);
 		userDetailsManager.createUser(userDetails);
+		System.out.println(7);
 	}
 
 		public void updateSpringUser(String username, String password) {

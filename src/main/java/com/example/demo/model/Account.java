@@ -16,7 +16,7 @@ public class Account {
     
     private Boolean active;
     
+    
     @OneToOne
     private User user;
-    
 }

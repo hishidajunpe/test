@@ -37,6 +37,10 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
+	@PostMapping("/login")
+	public String index() {
+		return "/";
+	}
 
 	// 新規登録画面へ遷移する
 	@GetMapping("/create")

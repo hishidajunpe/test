@@ -16,16 +16,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		//ログインページの制限なし
+		//	ログインページの制限なし
 		.antMatchers("/login").permitAll()
 		.antMatchers("/create").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		//ログインページ以後はログインページへ遷移するようにする
-//		.formLogin()	
-//		.loginPage("/login").permitAll()
-//		.and()
-		//ログアウトのpostが飛んで来たらログインページへ遷移する
+		//	ログインページ以後はログインページへ遷移するようにする
+		.formLogin()	
+		.loginPage("/login").permitAll()
+		.and()
+		//	ログアウトのpostが飛んで来たらログインページへ遷移する
 		.logout()
 		.logoutSuccessUrl("/login")
 		;
