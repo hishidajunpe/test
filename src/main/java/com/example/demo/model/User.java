@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,6 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
-@Table(name="Users")
 @Data
 public class User {
 
@@ -25,9 +25,8 @@ public class User {
 	@Id
 	@NotBlank(message = "名前を入力してください")
 	@Size(max = 50,message = "名前は50文字以内で入力してください")
+	@Column(name = "USERNAME")
 	private String name;
-	
-	
 	
 	@OneToMany(mappedBy="user")
 	private List<Summary> summary;
