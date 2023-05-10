@@ -7,12 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
 
 @Entity
+@Table(name="Users")
 @Data
 public class User {
 
@@ -25,9 +27,7 @@ public class User {
 	@Size(max = 50,message = "名前は50文字以内で入力してください")
 	private String name;
 	
-	@NotBlank(message = "パスワードを入力してください")
-	@Size(min = 8,max = 50,message = "パスワードは8文字以上50文字以内で入力してください")
-	private String password;
+	
 	
 	@OneToMany(mappedBy="user")
 	private List<Summary> summary;

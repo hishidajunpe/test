@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.model.AccountForm;
 import com.example.demo.model.User;
 import com.example.demo.repository.SummaryRepository;
 import com.example.demo.service.RegisterService;
@@ -39,25 +40,26 @@ public class HomeController {
 
 	// 新規登録画面へ遷移する
 	@GetMapping("/create")
-	public String create(User user,String name,String password) {
+	public String create(AccountForm accountForm) {
+	
 		return "create";
 
 	}
 
 	@PostMapping("/create")
-	public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+	public String create(@Valid AccountForm accountForm, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println(1);
 			return "/login";
 		}
 
 		try {
-			String username = user.getName();
+			String username = accountForm.getName();
 			System.out.println(2);
-			String password = user.getPassword();
+			String password = accountForm.getPassword();
 			System.out.println(3);
 
-			springUserService.createUser(username, password);
+//			springUserService.createUser(username, password);
 			System.out.println(4);
 			userService.saveUser(username, password);
 			return "redirect:/";

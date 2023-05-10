@@ -23,6 +23,7 @@ public class SpringUserService {
 				.username(username)
 				.roles("USER")
 				.password(password)
+				.disabled(false)
 				.build();
 		System.out.println(6);
 		userDetailsManager.createUser(userDetails);
@@ -45,6 +46,7 @@ public class SpringUserService {
 					builder
 					.username(username)
 					.authorities(userDetails.getAuthorities())
+					.disabled(false)
 					.build();
 			userDetailsManager.updateUser(newUserDetails);
 		}
