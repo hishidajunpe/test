@@ -17,13 +17,14 @@ public class SpringUserService {
 
 	public void createUser(String username,String password) {
 		UserBuilder builder = User.withDefaultPasswordEncoder();
+		System.out.println(5);
 		UserDetails userDetails = 
 				builder
 				.username(username)
 				.roles("USER")
 				.password(password)
-				.disabled(false)
 				.build();
+		System.out.println(6);
 		userDetailsManager.createUser(userDetails);
 	}
 
@@ -44,7 +45,6 @@ public class SpringUserService {
 					builder
 					.username(username)
 					.authorities(userDetails.getAuthorities())
-					.disabled(false)
 					.build();
 			userDetailsManager.updateUser(newUserDetails);
 		}

@@ -39,24 +39,28 @@ public class HomeController {
 
 	// 新規登録画面へ遷移する
 	@GetMapping("/create")
-	public String create(User user,String username,String password) {
+	public String create(User user,String name,String password) {
 		return "create";
 
 	}
 
 	@PostMapping("/create")
-	public String create1(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+	public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
+			System.out.println(1);
 			return "/login";
 		}
 
 		try {
 			String username = user.getName();
+			System.out.println(2);
 			String password = user.getPassword();
+			System.out.println(3);
 
 			springUserService.createUser(username, password);
-			userService.createUser(username, password);
-			return "redirect:/index";
+			System.out.println(4);
+			userService.saveUser(username, password);
+			return "redirect:/";
 		} catch (DuplicateKeyException e) {
 			bindingResult.addError(new FieldError("user", "username", "すでに存在するユーザーです。"));
 			return "login";

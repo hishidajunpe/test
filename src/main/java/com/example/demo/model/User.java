@@ -16,10 +16,11 @@ import lombok.Data;
 @Data
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
 	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
+	
+	@Id
 	@NotBlank(message = "名前を入力してください")
 	@Size(max = 50,message = "名前は50文字以内で入力してください")
 	private String name;
