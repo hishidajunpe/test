@@ -17,7 +17,7 @@
 
 
 
-<div class="container text-center w-80" style="margin-top:150px">
+<div class="container text-center w-80" style="margin-top:80px">
 <div class="container mt-3">
 <div class="border rounded" style="padding:50px;">
  
@@ -26,6 +26,8 @@
 
 
 <form th:action="@{/register}" th:object="${summary}" method="post">
+	<input type="hidden" th:field="*{user}">
+	
 	<div class="form-group row">
 		<label for="year" class="col-2 col-form-label">年</label>
 		<div class="col-5">
@@ -90,6 +92,33 @@
 	<a href="/" style="margin:30px">
 	トップページに戻る
 	</a>
+	
+
+	<div class="row">
+	<div class="col">
+	
+		<table class="table" style="margin:30px">
+			<thead>
+						<tr>
+					<th>月</th>
+					<th>日</th>
+					<th>ジャンル</th>
+					<th>金額</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				<tr th:each="s : *{summary}" th:object="${s}">
+					<td th:text="*{month}"></td>
+					<td th:text="*{day}"></td>
+					<td th:text="*{genre}"></td>
+					<td th:text="*{money}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+	
 	
 </div>
 </div>
