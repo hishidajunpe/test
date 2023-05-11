@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/common}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+<title>家計簿アプリ - 収入・支出の編集 - </title>
 </head>
+
+
 <body>
+<div layout:fragment="contents">
+
+<div class="container text-center w-80" style="margin-top:80px">
+<div class="container mt-3">
+<div class="border rounded" style="padding:50px;">
+ 
+
+<h3 style="padding:40px">収入・支出の編集</h3>
+
+
+<form th:action="@{/edit}" th:object="${summary}" method="post">
+	<input type="hidden" th:field="*{user.name}">
+	
+	<div class="form-group row">
+		<label for="year" class="col-2 col-form-label">年</label>
+		<div class="col-5">
+			<input type="text" th:field="*{year}" class="form-control">
+		</div>
+		<div class="col-5">
+			<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="form-text text-muted"></span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="month" class="col-2 col-form-label">月</label>
+		<div class="col-5">
+			<input type="text" th:field="*{month}" class="form-control">
+		</div>
+		<div class="col-5">
+			<span th:if="${#fields.hasErrors('month')}" th:errors="*{month}" class="form-text text-muted"></span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="day" class="col-2 col-form-label">日</label>
+		<div class="col-5">
+			<input type="text" th:field="*{day}" class="form-control">
+		</div>
+		<div class="col-5">
+			<span th:if="${#fields.hasErrors('day')}" th:errors="*{day}" class="form-text text-muted"></span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="genre" class="col-2 col-form-label">ジャンル</label>
+		<div class="col-5">
+			<input type="text" th:field="*{genre}" class="form-control">
+		</div>
+		<div class="col-5">
+			<span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" class="form-text text-muted"></span>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="money" class="col-2 col-form-label">金額</label>
+		<div class="col-5">
+			<input type="text" th:field="*{money}" class="form-control">
+		</div>
+		<div class="col-5">
+			<span th:if="${#fields.hasErrors('money')}" th:errors="*{money}" class="form-text text-muted"></span>
+		</div>
+	</div>
+					<div class="form-group row">
+		<label for="status" class="col-2 col-form-label">ステータス（収入・支出）</label>
+		<div class="col-2">
+			
+				<input th:field="*{status}" type="radio" value=true>収入
+				<input th:field="*{status}" type="radio" value=false>支出
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="offset-2 col-2">
+			<input type="submit" class="btn btn-success" value="編集" style="margin:30px">
+		</div>
+	</div>
+
+	</form>
+	
+	<a href="/" style="margin:30px">
+	トップページに戻る
+	</a>
+	
+</div>
+</div>
+</div>
+
+</div>
 
 </body>
 </html>
