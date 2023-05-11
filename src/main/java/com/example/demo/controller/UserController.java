@@ -84,7 +84,7 @@ public class UserController {
 
 	//	登録ページに移動する。
 	@GetMapping("/register")
-	String create(){
+	String create(Summary summary){
 		return "register";
 	}
 
