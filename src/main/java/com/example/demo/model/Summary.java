@@ -9,6 +9,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -21,9 +22,9 @@ public class Summary {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-//	@NotEmpty(message = "登録する年を入力してください")
-	@Min(1)
-	@Max(12)
+//	@NotNull(message = "登録する年を入力してください")
+//	@Min(1)
+//	@Max(12)
 	private Integer year;
 	
 //	@NotEmpty(message = "登録する月を入力してください")

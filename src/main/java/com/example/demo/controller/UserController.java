@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -90,17 +91,18 @@ public class UserController {
 
 	//	登録内容をDBへ反映する。失敗したら登録ページに戻る。成功したら再度登録ページに
 	@PostMapping("/register")
-	String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,boolean status){
+	String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer year,User user,Integer month,Integer day,Integer money,String genre,boolean status){
 		if (bindingResult.hasErrors()) {
 			return "/register";
 		}
-		registerService.createSummary(month, day, money, genre, status);
+		registerService.createSummary(year,month, day, money, genre, status,user);
 //		summary.add(summary1);
 		return "redirect:/register";
 	}
-	//	編集ページに移動する。
-	@GetMapping("/edit")
-	String edit(){
+	//	収入・支出の登録内容編集ページに移動する。
+	//	このユーザーの登録内容を編集する。
+	@GetMapping("/{summary}/edit")
+	String edit(@PathVariable("summary") Summary summary){
 		return "edit";
 	}
 
