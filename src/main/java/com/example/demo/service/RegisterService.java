@@ -16,7 +16,7 @@ public class RegisterService {
 	private SummaryRepository summaryRepository;
 
 	//	　支出・収入登録機能
-	public Summary createSummary(@ModelAttribute List<Summary> summary,Integer month,Integer day,Integer money,String genre,Boolean status){
+	public void createSummary(Integer month,Integer day,Integer money,String genre,Boolean status){
 
 		Summary summary1 = new Summary();
 		summary1.setMonth(month);
@@ -25,8 +25,8 @@ public class RegisterService {
 		summary1.setGenre(genre);
 		summary1.setStatus(status);
 		summaryRepository.save(summary1);
-		summary.add(summary1);
-		return summary1;
+//		summary.add(summary1);
+//		return summary1;
 	}
 
 	//	登録内容編集機能
