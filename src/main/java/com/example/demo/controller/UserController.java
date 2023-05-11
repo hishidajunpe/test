@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,14 +103,17 @@ public class UserController {
 	}
 	//	収入・支出の登録内容編集ページに移動する。
 	//	このユーザーの登録内容を編集する。
-	@GetMapping("/{summary}/edit")
-	String edit(@PathVariable("summary") Summary summary){
+	@GetMapping("/{id}/edit")
+	String edit(@PathVariable("id") Summary summary,Model model){
+		//	詰めなおす意味
+		
+		model.addAttribute("summary", summary);
 		return "edit";
 	}
 
 	//	編集内容をDBへ反映させる。失敗したら編集画面に戻る。成功したらトップ（index）にリダイレクトする。
-	@PostMapping("/edit")
-	String editSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,boolean status ){
+	@PostMapping("/{id}/edit")
+	String editSummary(@Valid Summary summary,BindingResult  bindingResult ){
 		if (bindingResult.hasErrors()) {
 			return "/edit";
 		}
