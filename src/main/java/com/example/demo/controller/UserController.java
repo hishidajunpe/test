@@ -90,7 +90,7 @@ public class UserController {
 
 	//	登録内容をDBへ反映する。失敗したら登録ページに戻る。成功したら再度登録ページに
 	@PostMapping("/register")
-	String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,Boolean status){
+	String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,boolean status){
 		if (bindingResult.hasErrors()) {
 			return "/register";
 		}
@@ -106,7 +106,7 @@ public class UserController {
 
 	//	編集内容をDBへ反映させる。失敗したら編集画面に戻る。成功したらトップ（index）にリダイレクトする。
 	@PostMapping("/edit")
-	String editSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,Boolean status ){
+	String editSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,boolean status ){
 		if (bindingResult.hasErrors()) {
 			return "/edit";
 		}

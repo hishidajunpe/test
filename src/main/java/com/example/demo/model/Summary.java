@@ -21,23 +21,23 @@ public class Summary {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@NotEmpty(message = "登録する年を入力してください")
+//	@NotEmpty(message = "登録する年を入力してください")
 	@Min(1)
 	@Max(12)
 	private Integer year;
 	
-	@NotEmpty(message = "登録する月を入力してください")
+//	@NotEmpty(message = "登録する月を入力してください")
 	@Min(1)
 	@Max(12)
 	private Integer month;
 	
-	@NotEmpty(message = "登録する日を入力してください")
+//	@NotEmpty(message = "登録する日を入力してください")
 	@Min(1)
 	@Max(31)
 	private Integer day;
 	
-	@NotEmpty(message = "登録する金額を入力してください")
-	@Size(max = 9,message = "10億円以内で登録してください")
+//	@NotEmpty(message = "登録する金額を入力してください")
+//	@Size(max = 9,message = "10億円以内で登録してください")
 	private Integer money;
 	
 	@NotBlank(message = "ジャンルを入力してください")
