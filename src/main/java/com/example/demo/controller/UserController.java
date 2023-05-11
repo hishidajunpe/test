@@ -52,36 +52,35 @@ public class UserController {
 	//		model.addAttribute("outcome",outcome);
 	
 ////	収入の合計を表示
-//	@PostMapping("/")
-//	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
-//		int sumIncome = 0;
-//		sumIncome=registerService.getSumIncome(year, month);
-//		model.addAttribute("sumIncome", sumIncome);
-//		return "redirect:/index";
-//	}
+	@PostMapping("/sumIncom")
+	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
+		int sumIncome = 0;
+		sumIncome=registerService.getSumIncome(year, month);
+		model.addAttribute("sumIncome", sumIncome);
+		return "redirect:/index";
+	}
 ////	支出の合計を表示
-//	@PostMapping("/")
-//	public String sumOut(@RequestParam Integer year,Integer month,Model model) {
-//		int sumOutcome = 0;
-//					sumOutcome=registerService.getSumOutcome(year, month);
-//					model.addAttribute("sumOutcome", sumOutcome);
-//		return "redirect:/index";
-//	}
-//	
-//	@PostMapping("/")
-//	public String tableIncome(@RequestParam Integer year,Integer month,Model model) {
-//			List<Summary> summary = registerService.getIncomeMonth(year, month);
-//			model.addAttribute("tableIncome", summary);
-//		
-//		return "redirect:/index";
-//	}
-//	@PostMapping("/")
-//	public String tableOutcome(@RequestParam Integer year,Integer month,Model model) {
-//		List<Summary> summary = registerService.getOutcomeMonth(year, month);
-//		model.addAttribute("tableOutcome", summary);
-//	
-//		return "redirect:/index";
-//	}
+	@PostMapping("/sumOutcome")
+	public String sumOut(@RequestParam Integer year,Integer month,Model model) {
+		int sumOutcome = 0;
+					sumOutcome=registerService.getSumOutcome(year, month);
+					model.addAttribute("sumOutcome", sumOutcome);
+		return "redirect:/index";
+	}
+	@PostMapping("/tableIncome")
+	public String tableIncome(@RequestParam Integer year,Integer month,Model model) {
+			List<Summary> summary = registerService.getIncomeMonth(year, month);
+			model.addAttribute("tableIncome", summary);
+		
+		return "redirect:/index";
+	}
+	@PostMapping("/tableOutcome")
+	public String tableOutcome(@RequestParam Integer year,Integer month,Model model) {
+		List<Summary> summary = registerService.getOutcomeMonth(year, month);
+		model.addAttribute("tableOutcome", summary);
+	
+		return "redirect:/index";
+	}
 
 	//	登録ページに移動する。
 	@GetMapping("/register")
