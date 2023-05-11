@@ -34,11 +34,16 @@ public class UserController {
 		@GetMapping("/")
 	//	トップページに行き、収入の合計とそのテーブル、支出の合計とそのテーブルを表示したい。
 		String index(Model model){
-//	//	収入の合計を表示
-//		int sumIncome = registerService.getSumIncome(@ModelAttribute List<Summary>summary, year, month);
-//		model.addAttribute("sumIncome", sumIncome);
-//	//	支出の合計を表示
-//		Summary income = registerService.getIncomeMonth
+////	//	収入の合計を表示
+//			int sumIncome = 0;
+//			
+//			sumIncome=registerService.getSumIncome(year, month);
+//			model.addAttribute("sumIncome", sumIncome);
+////	//	支出の合計を表示
+//			int sumOutcome = 0;
+//			sumOutcome=registerService.getSumOutcome(year, month);
+//			model.addAttribute("sumOutcome", sumOutcome);
+			
 //	//	収入のテーブル情報をモデルに登録
 //		model.addAttribute("income",income);
 //
@@ -47,24 +52,38 @@ public class UserController {
 //		model.addAttribute("outcome",outcome);
 		return "index";
 		}
-
-
-
-	//	登録ページに移動する。
-		@GetMapping("/register")
-		String create(){
-		return "register";
-		}
-
-		//	登録内容をDBへ反映する。失敗したら登録ページに戻る。成功したら再度登録ページに
-		@PostMapping("/register")
-		String createSummary(@ModelAttribute List<Summary> summary,BindingResult  bindingResult,Integer month,Integer day,Integer money,String genre,Boolean status ){
-		 if (bindingResult.hasErrors()) {
-		            return "/register";
-		        }
-		       registerService.createSummary(summary, month, day, money, genre, status);
-		return "redirect:/register";
-		}
+		
+//		@PostMapping("/")
+//		public String index() {
+//			return "index";
+//		}@PostMapping("/")
+//		public String index() {
+//			return "index";
+//		}
+//		@PostMapping("/")
+//		public String index() {
+//			return "index";
+//		}
+//		@PostMapping("/")
+//		public String index() {
+//			return "index";
+//		}
+//
+//	//	登録ページに移動する。
+//		@GetMapping("/register")
+//		String create(){
+//		return "register";
+//		}
+//
+//		//	登録内容をDBへ反映する。失敗したら登録ページに戻る。成功したら再度登録ページに
+//		@PostMapping("/register")
+//		String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult){
+//		 if (bindingResult.hasErrors()) {
+//		            return "/register";
+//		        }
+//		       registerService.createSummary(summary);
+//		return "redirect:/register";
+//		}
 		//	編集ページに移動する。
 		@GetMapping("/edit")
 		String edit(){
