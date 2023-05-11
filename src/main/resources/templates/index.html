@@ -13,7 +13,7 @@
 
 <div class="row mb-3">
 	<div class="col">
-		<form action="/sumIncom" class="form-inline" method="get">
+		<form action="/sumAndTable" class="form-inline" method="post">
 			<label class="mr-3">
 				年を記入してください
 				<input type="text" name="year" th:value="${param.year}" class="form-control">
@@ -43,7 +43,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="summary : ${summaries}" th:object="${summary}">
+				<tr th:each="tableIncome : ${summaries}" th:object="${summary}">
+					<td th:text="*{month}"></td>
+					<td th:text="*{genre}"></td>
+					<td th:text="*{money}"></td>
+					<td>
+						<a th:href="@{|/summary/*{id}|}">表示</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tableOutcome : ${summaries}" th:object="${summary}">
 					<td th:text="*{month}"></td>
 					<td th:text="*{genre}"></td>
 					<td th:text="*{money}"></td>
