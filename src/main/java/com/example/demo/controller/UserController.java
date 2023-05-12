@@ -43,21 +43,26 @@ public class UserController {
 		int sumIncome = 0;
 		
 
+		
 		sumIncome=registerService.getSumIncome(year, month);
-		System.out.println(sumIncome);
+		
 		model.addAttribute("sumIncome", sumIncome);
-		System.out.println(38);
+		
+		
 		int sumOutcome = 0;
 		sumOutcome=registerService.getSumOutcome(year, month);
 		model.addAttribute("sumOutcome", sumOutcome);
-		System.out.println(sumOutcome);
+		
+	
+		
 		List<Summary> summary = registerService.getIncomeMonth(year, month);
 		model.addAttribute("tableIncome", summary);
-//		System.out.println(summary);
+	
 		List<Summary> summary1 = registerService.getOutcomeMonth(year, month);
 		model.addAttribute("tableOutcome", summary1);
-		System.out.println(35);
-		return "redirect:/";
+		System.out.println(sumIncome);
+		System.out.println(sumOutcome);
+		return "index";
 	}
 
 	//	@PostMapping("/sumIncom")
@@ -88,7 +93,7 @@ public class UserController {
 	@PostMapping("/register")
 	String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer year,User user,Integer month,Integer day,Integer money,String genre,boolean status){
 		if (bindingResult.hasErrors()) {
-			return "/register";
+			return "register";
 		}
 		registerService.createSummary(year,month, day, money, genre, status,user);
 		//		summary.add(summary1);

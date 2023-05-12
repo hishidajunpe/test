@@ -90,15 +90,8 @@ public class RegisterService {
 
 	//	収入の月間テーブルの表示
 	public List<Summary> getIncomeMonth(Integer year,Integer month){
-		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
-		for (int i = 0;i<summary1.size();i++){
-			summary1.get(i).getYear();
-			summary1.get(i).getMonth();
-			summary1.get(i).getDay();
-			summary1.get(i).getGenre();
-			summary1.get(i).getMoney();
-		}
-		return summary1;
+	
+		return summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
 	}
 	//	public List<Summary> getIncomeMonth(@ModelAttribute List<Summary> summary,Integer year,Integer month){
 	//		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearAndMonth(year, month);

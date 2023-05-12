@@ -13,8 +13,7 @@
 
 		<div class="row mb-3">
 			<div class="col">
-				<form th:action="@{/}" class="form-inline" th:object="${summary}"
-					method="post">
+				<form th:action="@{/}" class="form-inline" method="post">
 					<label class="mr-3"> 年を記入してください
 					<input type="text"
 						name="year" th:value="${param.year}" class="form-control">
@@ -38,23 +37,51 @@
 				</form>
 			</div>
 		</div>
-		<span th:text="${sumincome}">合計</span>
+		
+		<span th:text="${sumIncome}">合計</span>
+		<span th:text="${sumOutcome}">合計</span>
 
-	<<div class="row">
+	<div class="row">
 			<div class="col">
 				<table class="table">
 					<thead>
 						<tr>
-							<th></th>
-							<th></th>
-							<th></th>
+							<th>年</th>
+							<th>月</th>
+							<th>日</th>
+							<th>ジャンル</th>
+							<th>金額</th>
+							<th>詳細</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="tableIncome : ${tableIncome}" th:object="${tableIncome}">
+						<tr th:each="summary : ${tableIncome}" th:object="${summary}" >
 							<td th:text="*{year}"></td>
 							<td th:text="*{month}"></td>
-							<td th:text="*{date}"></td>
+							<td th:text="*{day}"></td>
+							<td th:text="*{genre}"></td>
+							<td th:text="*{money}"></td>
+							<td><a th:href="@{|/summary/*{id}/edit|}">表示</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table">
+					<thead>
+						<tr>
+							<th>年</th>
+							<th>月</th>
+							<th>日</th>
+							<th>ジャンル</th>
+							<th>金額</th>
+							<th>詳細</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="summary : ${tableOutcome}" th:object="${summary}" >
+							<td th:text="*{year}"></td>
+							<td th:text="*{month}"></td>
+							<td th:text="*{day}"></td>
 							<td th:text="*{genre}"></td>
 							<td th:text="*{money}"></td>
 							<td><a th:href="@{|/summary/*{id}/edit|}">表示</a></td>
@@ -63,23 +90,7 @@
 				</table>
 		
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="tableOutcome : ${summaries}" th:object="${summary}">
-							<td th:text="*{month}"></td>
-							<td th:text="*{genre}"></td>
-							<td th:text="*{money}"></td>
-							<td><a th:href="@{|/summary/*{id}/edit|}">表示</a></td>
-						</tr>
-					</tbody>
-				</table>
+			
 			</div>
 		</div>   
 
