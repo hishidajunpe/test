@@ -34,7 +34,7 @@ public class UserController {
 	@GetMapping("/")
 	//	トップページに行き、収入の合計とそのテーブル、支出の合計とそのテーブルを表示したい。
 	String index(){
-		
+		System.err.println(11111);
 		return "index";
 	}
 //////	収入の合計を表示
@@ -55,9 +55,11 @@ public class UserController {
 	//		model.addAttribute("outcome",outcome);
 	
 ////	収入の合計を表示
-	@PostMapping("/sumAndTable")
+	@PostMapping("/")
+
 	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
 		int sumIncome = 0;
+	
 		sumIncome=registerService.getSumIncome(year, month);
 		model.addAttribute("sumIncome", sumIncome);
 
@@ -67,7 +69,7 @@ public class UserController {
 	
 			List<Summary> summary = registerService.getIncomeMonth(year, month);
 			model.addAttribute("tableIncome", summary);
-		
+	
 		List<Summary> summary1 = registerService.getOutcomeMonth(year, month);
 		model.addAttribute("tableOutcome", summary1);
 	
@@ -122,6 +124,7 @@ public class UserController {
 	@PostMapping("/{id}/edit")
 	String editSummary(@Valid Summary summary,BindingResult  bindingResult ){
 		if (bindingResult.hasErrors()) {
+			System.err.println(39);
 			return "/edit";
 		}
 		registerService.editSummary(summary);
