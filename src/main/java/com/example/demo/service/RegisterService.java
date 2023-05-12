@@ -40,21 +40,23 @@ public class RegisterService {
 	//	収入の合計表示 
 	public int getSumIncome(Integer year, Integer month){
 		int totalIncome = 0;
-		List<Summary> summary1 =summaryRepository.findByStatusTrueAndYearContainsAndMonthContains(year, month);
+		System.out.println(1);
+		 List<Summary> summary1 =summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
 		for (int i = 0;i<summary1.size();i++){
-			int income = summary1.get(i).getMoney();
-			if(summary1.get(i).getStatus() == true) {
-
-				totalIncome += income;
-			}
-		}return totalIncome;
+			int income =summary1.get(i).getMoney();
+			
+			totalIncome += income;
+//			if(summary.get(i).getStatus() == true) {
+//						}
+		}
+		System.out.println(2);return totalIncome;
 	}
 
 	//	収入の合計表示 
 	//	public int getSumIncome(@ModelAttribute List<Summary> summary,Integer year, Integer month){
 	//		int totalIncome = 0;
 	//		for (int i = 0;i<summary.size();i++){
-	//			int income = summaryRepository.findByStatusTrueAndYearContainsAndMonthContains(year, month).get(i).getMoney();
+	//			int income = summaryRepository.findByStatusTrueAndYearAndMonth(year, month).get(i).getMoney();
 	//			if(summary.get(i).getStatus() == true) {
 	//
 	//				totalIncome += income;
@@ -65,20 +67,20 @@ public class RegisterService {
 	//	支出の合計表示 
 	public int getSumOutcome(Integer year, Integer month){
 		int totalOutcome = 0;
-		List<Summary> summary=summaryRepository.findByStatusFalseAndYearContainsAndMonthContains(year, month);
+		List<Summary> summary=summaryRepository.findByStatusFalseAndYearAndMonth(year, month);
 		for (int i = 0;i<summary.size();i++){
 
 			int outcome = summary.get(i).getMoney();
-			if(summary.get(i).getStatus() == false) {
+			
 				totalOutcome += outcome;
-			}
+	
 		}
 		return totalOutcome;
 	}
 	//	public int getSumOutcome(@ModelAttribute List<Summary> summary,Integer userId, Integer year, Integer month){
 	//		int totalOutcome = 0;
 	//		for (int i = 0;i<summary.size();i++){
-	//			int outcome = summaryRepository.findByStatusFalseAndYearContainsAndMonthContains(year, month).get(i).getMoney();
+	//			int outcome = summaryRepository.findByStatusFalseAndYearAndMonth(year, month).get(i).getMoney();
 	//			if(summary.get(i).getStatus() == false) {
 	//				totalOutcome += outcome;
 	//			}
@@ -88,7 +90,7 @@ public class RegisterService {
 
 	//	収入の月間テーブルの表示
 	public List<Summary> getIncomeMonth(Integer year,Integer month){
-		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearContainsAndMonthContains(year, month);
+		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
 		for (int i = 0;i<summary1.size();i++){
 			summary1.get(i).getYear();
 			summary1.get(i).getMonth();
@@ -99,7 +101,7 @@ public class RegisterService {
 		return summary1;
 	}
 	//	public List<Summary> getIncomeMonth(@ModelAttribute List<Summary> summary,Integer year,Integer month){
-	//		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearContainsAndMonthContains(year, month);
+	//		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
 	//		for (int i = 0;i<summary.size();i++){
 	//			// status==trueのみだけ取り出したい
 	//			if(summary1.get(i).getStatus()==true) {
@@ -113,19 +115,23 @@ public class RegisterService {
 	//		return summary1;
 	//	}
 	//	支出の月間テーブルの表示
-
 	public List<Summary> getOutcomeMonth(Integer year,Integer month){
-		List<Summary> summary1 = summaryRepository.findByStatusFalseAndYearContainsAndMonthContains(year, month);
-		for (int i = 0;i<summary1.size();i++){
-			summary1.get(i).getYear();
-			summary1.get(i).getMonth();
-			summary1.get(i).getDay();
-			summary1.get(i).getGenre();
-			summary1.get(i).getMoney();
-		}return summary1;
+		
+		return summaryRepository.findByStatusFalseAndYearAndMonth(year, month);
+		
 	}
+//	public List<Summary> getOutcomeMonth(Integer year,Integer month){
+//		List<Summary> summary1 = summaryRepository.findByStatusFalseAndYearAndMonth(year, month);
+//		for (int i = 0;i<summary1.size();i++){
+//			summary1.get(i).getYear();
+//			summary1.get(i).getMonth();
+//			summary1.get(i).getDay();
+//			summary1.get(i).getGenre();
+//			summary1.get(i).getMoney();
+//		}return summary1;
+//	}
 	//	public List<Summary> getOutcomeMonth(@ModelAttribute List<Summary> summary,Integer year,Integer month){
-	//		List<Summary> summary1 = summaryRepository.findByStatusFalseAndYearContainsAndMonthContains(year, month);
+	//		List<Summary> summary1 = summaryRepository.findByStatusFalseAndYearAndMonth(year, month);
 	//		for (int i = 0;i<summary.size();i++){
 	//			// status==trueのみだけ取り出したい
 	//			if(summary1.get(i).getStatus()==false) {

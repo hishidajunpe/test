@@ -29,70 +29,54 @@ public class UserController {
 	public User currentUser(Account account) {
 		return account.getUser();
 	}
-	
+
 	@Autowired RegisterService registerService;
 	@GetMapping("/")
 	//	トップページに行き、収入の合計とそのテーブル、支出の合計とそのテーブルを表示したい。
 	String index(){
-		System.err.println(11111);
+
 		return "index";
 	}
-//////	収入の合計を表示
-	//			int sumIncome = 0;
-	//			sumIncome=registerService.getSumIncome(year, month);
-	//			model.addAttribute("sumIncome", sumIncome);
-
-	////	//	支出の合計を表示
-	//			int sumOutcome = 0;
-	//			sumOutcome=registerService.getSumOutcome(year, month);
-	//			model.addAttribute("sumOutcome", sumOutcome);
-
-	//	//	収入のテーブル情報をモデルに登録
-	//		model.addAttribute("income",income);
-	//
-	//		Summary outcome = registerService.getOutcomeMonth
-	//	//	支出のテーブル情報をモデルに登録
-	//		model.addAttribute("outcome",outcome);
-	
-////	収入の合計を表示
 	@PostMapping("/")
 
 	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
 		int sumIncome = 0;
-	
-		sumIncome=registerService.getSumIncome(year, month);
-		model.addAttribute("sumIncome", sumIncome);
+		
 
+		sumIncome=registerService.getSumIncome(year, month);
+		System.out.println(sumIncome);
+		model.addAttribute("sumIncome", sumIncome);
+		System.out.println(38);
 		int sumOutcome = 0;
-					sumOutcome=registerService.getSumOutcome(year, month);
-					model.addAttribute("sumOutcome", sumOutcome);
-	
-			List<Summary> summary = registerService.getIncomeMonth(year, month);
-			model.addAttribute("tableIncome", summary);
-	
+		sumOutcome=registerService.getSumOutcome(year, month);
+		model.addAttribute("sumOutcome", sumOutcome);
+		System.out.println(sumOutcome);
+		List<Summary> summary = registerService.getIncomeMonth(year, month);
+		model.addAttribute("tableIncome", summary);
+//		System.out.println(summary);
 		List<Summary> summary1 = registerService.getOutcomeMonth(year, month);
 		model.addAttribute("tableOutcome", summary1);
-	
-		return "redirect:/index";
+		System.out.println(35);
+		return "redirect:/";
 	}
-	
-//	@PostMapping("/sumIncom")
-//	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
-//		int sumIncome = 0;
-//		sumIncome=registerService.getSumIncome(year, month);
-//		model.addAttribute("sumIncome", sumIncome);
-//		return "redirect:/index";
-//	}
-//////	支出の合計を表示
-//	@PostMapping("/sumOutcome")
-//	public String sumOut(@RequestParam Integer year,Integer month,Model model) {
-//		int sumOutcome = 0;
-//					sumOutcome=registerService.getSumOutcome(year, month);
-//					model.addAttribute("sumOutcome", sumOutcome);
-//		return "redirect:/index";
-//	}
-	
-	
+
+	//	@PostMapping("/sumIncom")
+	//	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
+	//		int sumIncome = 0;
+	//		sumIncome=registerService.getSumIncome(year, month);
+	//		model.addAttribute("sumIncome", sumIncome);
+	//		return "redirect:/index";
+	//	}
+	//////	支出の合計を表示
+	//	@PostMapping("/sumOutcome")
+	//	public String sumOut(@RequestParam Integer year,Integer month,Model model) {
+	//		int sumOutcome = 0;
+	//					sumOutcome=registerService.getSumOutcome(year, month);
+	//					model.addAttribute("sumOutcome", sumOutcome);
+	//		return "redirect:/index";
+	//	}
+
+
 
 	//	登録ページに移動する。
 	@GetMapping("/register")
@@ -107,7 +91,7 @@ public class UserController {
 			return "/register";
 		}
 		registerService.createSummary(year,month, day, money, genre, status,user);
-//		summary.add(summary1);
+		//		summary.add(summary1);
 		return "redirect:/register";
 	}
 	//	収入・支出の登録内容編集ページに移動する。
@@ -115,7 +99,7 @@ public class UserController {
 	@GetMapping("/{id}/edit")
 	String edit(@PathVariable("id") Summary summary,Model model){
 		//	詰めなおす意味
-		
+
 		model.addAttribute("summary", summary);
 		return "edit";
 	}

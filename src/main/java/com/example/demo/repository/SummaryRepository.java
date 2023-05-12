@@ -14,13 +14,13 @@ public interface SummaryRepository extends JpaRepository<Summary, Integer>{
 //	List<Summary>findByUserId(Integer userId);
 	
 	//	指定されたユーザーIDから〇月の収入データを取得
-	List<Summary>findByStatusTrueAndYearContainsAndMonthContains(Integer year, Integer month);
+	List<Summary>findByStatusTrueAndYearAndMonth(Integer year, Integer month);
 	
 	//	指定されたユーザーIDから収入の全データを取得する
 	List<Summary>findByUserIdAndStatusTrue(Integer userId);
 	
 	//	指定されたユーザーIDから〇月の支出のデータを取得
-	List<Summary> findByStatusFalseAndYearContainsAndMonthContains(Integer year, Integer month);
+	List<Summary> findByStatusFalseAndYearAndMonth(Integer year, Integer month);
 	
 	//	指定されたユーザーIDから支出の全データを取得する
 	List<Summary> findByUserIdAndStatusFalse(Integer userId);

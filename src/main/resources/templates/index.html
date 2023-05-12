@@ -1,82 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/common}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/common}">
 <head>
 <meta charset="UTF-8">
 <title>家計簿アプリ</title>
 </head>
 <body>
-<div layout:fragment="contents">
+	<div layout:fragment="contents">
 
 
 
-<div class="row mb-3">
-	<div class="col">
-		<form action="/" class="form-inline" th:object="${summary}"  method="post">
-			<label class="mr-3">
-				年を記入してください
-				<input type="text" name="year" th:value="${param.year}" class="form-control">
-			</label>
-			<label class="mr-3">
-				月を選択してください
-				<select name="month" class="form-control">
-					<option>1</option><option>2</option><option>3</option>
-					<option>4</option><option>5</option><option>6</option>
-					<option>7</option><option>8</option><option>9</option>
-					<option>10</option><option>11</option><option>12</option>
-				</select>
-			</label>
-			<input type="submit" value="検索" class="btn btn-primary mr-1">
-		</form>
+		<div class="row mb-3">
+			<div class="col">
+				<form th:action="@{/}" class="form-inline" th:object="${summary}"
+					method="post">
+					<label class="mr-3"> 年を記入してください
+					<input type="text"
+						name="year" th:value="${param.year}" class="form-control">
+					</label> 
+					<label class="mr-3"> 月を選択してください <select name="month"
+						class="form-control">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+					</select>
+					</label> <input type="submit" value="検索" class="btn btn-primary mr-1">
+				</form>
+			</div>
+		</div>
+		<span th:text="${sumincome}">合計</span>
+
+	<<div class="row">
+			<div class="col">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tableIncome : ${tableIncome}" th:object="${tableIncome}">
+							<td th:text="*{year}"></td>
+							<td th:text="*{month}"></td>
+							<td th:text="*{date}"></td>
+							<td th:text="*{genre}"></td>
+							<td th:text="*{money}"></td>
+							<td><a th:href="@{|/summary/*{id}/edit|}">表示</a></td>
+						</tr>
+					</tbody>
+				</table>
+		
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tableOutcome : ${summaries}" th:object="${summary}">
+							<td th:text="*{month}"></td>
+							<td th:text="*{genre}"></td>
+							<td th:text="*{money}"></td>
+							<td><a th:href="@{|/summary/*{id}/edit|}">表示</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>   
+
 	</div>
-</div>
-
-<div class="row">
-	<div class="col">
-		<table class="table">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="tableIncome : ${summaries}" th:object="${summary}">
-					<td th:text="*{year}"></td>
-					<td th:text="*{month}"></td>
-					<td th:text="*{date}"></td>
-					<td th:text="*{genre}"></td>
-					<td th:text="*{money}"></td>
-					<td>
-						<a th:href="@{|/summary/*{id}|}">表示</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<table class="table">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="tableOutcome : ${summaries}" th:object="${summary}">
-					<td th:text="*{month}"></td>
-					<td th:text="*{genre}"></td>
-					<td th:text="*{money}"></td>
-					<td>
-						<a th:href="@{|/summary/*{id}|}">表示</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-</div>
 </body>
 </html>
