@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.model.Account;
 import com.example.demo.model.Summary;
 import com.example.demo.model.User;
-import com.example.demo.repository.SummaryRepository;
+//import com.example.demo.repository.SummaryRepository;
 import com.example.demo.service.RegisterService;
 
 
@@ -39,29 +39,27 @@ public class UserController {
 	}
 	@PostMapping("/")
 
-	public String sumIncome(@RequestParam Integer year,Integer month,Model model) {
+	public String sumIncome(User user,@RequestParam Integer year,Integer month,Model model) {
 		int sumIncome = 0;
 		
 
 		
-		sumIncome=registerService.getSumIncome(year, month);
+		sumIncome=registerService.getSumIncome(user,year, month);
 		
 		model.addAttribute("sumIncome", sumIncome);
 		
 		
 		int sumOutcome = 0;
-		sumOutcome=registerService.getSumOutcome(year, month);
+		sumOutcome=registerService.getSumOutcome(user,year, month);
 		model.addAttribute("sumOutcome", sumOutcome);
 		
 	
 		
-		List<Summary> summary = registerService.getIncomeMonth(year, month);
+		List<Summary> summary = registerService.getIncomeMonth(user,year, month);
 		model.addAttribute("tableIncome", summary);
 	
-		List<Summary> summary1 = registerService.getOutcomeMonth(year, month);
+		List<Summary> summary1 = registerService.getOutcomeMonth(user,year, month);
 		model.addAttribute("tableOutcome", summary1);
-		System.out.println(sumIncome);
-		System.out.println(sumOutcome);
 		return "index";
 	}
 
@@ -113,7 +111,6 @@ public class UserController {
 	@PostMapping("/{id}/edit")
 	String editSummary(@Valid Summary summary,BindingResult  bindingResult ){
 		if (bindingResult.hasErrors()) {
-			System.err.println(39);
 			return "/edit";
 		}
 		registerService.editSummary(summary);

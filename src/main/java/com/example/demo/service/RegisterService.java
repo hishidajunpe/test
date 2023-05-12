@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.model.Summary;
 import com.example.demo.model.User;
@@ -38,10 +38,10 @@ public class RegisterService {
 	}
 
 	//	収入の合計表示 
-	public int getSumIncome(Integer year, Integer month){
+	public int getSumIncome(User user,Integer year, Integer month){
 		int totalIncome = 0;
 		System.out.println(1);
-		 List<Summary> summary1 =summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
+		 List<Summary> summary1 =summaryRepository.findByStatusTrueAndUserAndYearAndMonth(user, year, month);
 		for (int i = 0;i<summary1.size();i++){
 			int income =summary1.get(i).getMoney();
 			
@@ -65,9 +65,9 @@ public class RegisterService {
 	//	}
 
 	//	支出の合計表示 
-	public int getSumOutcome(Integer year, Integer month){
+	public int getSumOutcome(User user,Integer year, Integer month){
 		int totalOutcome = 0;
-		List<Summary> summary=summaryRepository.findByStatusFalseAndYearAndMonth(year, month);
+		List<Summary> summary=summaryRepository.findByStatusFalseAndUserAndYearAndMonth(user,year, month);
 		for (int i = 0;i<summary.size();i++){
 
 			int outcome = summary.get(i).getMoney();
@@ -89,9 +89,9 @@ public class RegisterService {
 	//	}
 
 	//	収入の月間テーブルの表示
-	public List<Summary> getIncomeMonth(Integer year,Integer month){
+	public List<Summary> getIncomeMonth(User user,Integer year,Integer month){
 	
-		return summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
+		return summaryRepository.findByStatusTrueAndUserAndYearAndMonth(user, year, month);
 	}
 	//	public List<Summary> getIncomeMonth(@ModelAttribute List<Summary> summary,Integer year,Integer month){
 	//		List<Summary> summary1 = summaryRepository.findByStatusTrueAndYearAndMonth(year, month);
@@ -108,9 +108,9 @@ public class RegisterService {
 	//		return summary1;
 	//	}
 	//	支出の月間テーブルの表示
-	public List<Summary> getOutcomeMonth(Integer year,Integer month){
+	public List<Summary> getOutcomeMonth(User user,Integer year,Integer month){
 		
-		return summaryRepository.findByStatusFalseAndYearAndMonth(year, month);
+		return summaryRepository. findByStatusFalseAndUserAndYearAndMonth(user,year,month);
 		
 	}
 //	public List<Summary> getOutcomeMonth(Integer year,Integer month){
