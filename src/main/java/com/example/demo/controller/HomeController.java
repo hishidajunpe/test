@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.AccountForm;
+import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -22,19 +23,15 @@ public class HomeController {
 
 	// ログイン画面へ遷移する
 	@GetMapping("/login")
-	public String login(@Valid AccountForm accountForm, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			System.out.println(1);
-			return "/login";
-		}
-		return "redirect:/";
+	public String index(User user) {
+		return "/login";
 	}
 
 	@PostMapping("/login")
-	public String index() {
-		return "/";
+	public String login(User user) {
+		return "redirect:/";
 	}
-
+	
 	// 新規登録画面へ遷移する
 	@GetMapping("/create")
 	public String create(AccountForm accountForm) {
