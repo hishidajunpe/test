@@ -90,7 +90,7 @@ public class UserController {
 
 	//	登録内容をDBへ反映する。失敗したら登録ページに戻る。成功したら再度登録ページに
 	@PostMapping("/register")
-	String createSummary(@ModelAttribute Summary summary,BindingResult  bindingResult,Integer year,User user,Integer month,Integer day,Integer money,String genre,boolean status){
+	String createSummary(@ModelAttribute @Valid Summary summary,BindingResult  bindingResult,Integer year,User user,Integer month,Integer day,Integer money,String genre,boolean status){
 		if (bindingResult.hasErrors()) {
 			return "register";
 		}
