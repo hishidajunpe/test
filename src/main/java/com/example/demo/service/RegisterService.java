@@ -40,7 +40,6 @@ public class RegisterService {
 	//	収入の合計表示 
 	public int getSumIncome(User user,Integer year, Integer month){
 		int totalIncome = 0;
-		System.out.println(1);
 		 List<Summary> summary1 =summaryRepository.findByStatusTrueAndUserAndYearAndMonth(user, year, month);
 		for (int i = 0;i<summary1.size();i++){
 			int income =summary1.get(i).getMoney();
@@ -48,8 +47,7 @@ public class RegisterService {
 			totalIncome += income;
 //			if(summary.get(i).getStatus() == true) {
 //						}
-		}
-		System.out.println(2);return totalIncome;
+		};return totalIncome;
 	}
 
 	//	収入の合計表示 

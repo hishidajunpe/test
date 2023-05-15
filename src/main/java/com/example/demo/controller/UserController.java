@@ -40,9 +40,10 @@ public class UserController {
 	@PostMapping("/")
 
 	public String sumIncome(User user,@RequestParam Integer year,Integer month,Model model) {
-		int sumIncome = 0;
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
 		
-
+		int sumIncome = 0;
 		
 		sumIncome=registerService.getSumIncome(user,year, month);
 		

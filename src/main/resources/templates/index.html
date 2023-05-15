@@ -38,12 +38,13 @@
 				</form>
 			</div>
 		</div>
-		
-		<span th:text="${sumIncome}">合計</span>
-		<span th:text="${sumOutcome}">合計</span>
+		<span th:text="${year}"></span>年<span th:text="${month}"></span>月の
+		月間収入は<span th:text="${sumIncome}">合計</span>円です。
+		月間支出は<span th:text="${sumOutcome}">合計</span>円です。
 
 	<div class="row">
 			<div class="col">
+			収入の表
 				<table class="table">
 					<thead>
 						<tr>
@@ -66,7 +67,12 @@
 						</tr>
 					</tbody>
 				</table>
+				<br>
+				<br>
+				<br>
+				<br>
 				
+				支出の表
 				<table class="table">
 					<thead>
 						<tr>
