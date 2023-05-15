@@ -11,12 +11,12 @@ import javax.validation.ValidatorFactory;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.demo.model.AccountForm;
 import com.example.demo.model.Summary;
 
 public class SummaryTest {
@@ -40,6 +40,39 @@ private Validator validator;
 		Set<ConstraintViolation<Summary>> violations = validator.validate(summary);
 		assertThat(violations.size()).isEqualTo(0);
 	}
+	
+	@Test
+	public void testValidationFailYearNull() {
+		Summary summary = new Summary();
+		summary.setMonth(5);
+		summary.setDay(15);
+		summary.setGenre("食費");
+		summary.setMoney(300);
+		
+		Set<ConstraintViolation<Summary>> violations = validator.validate(summary);
+		assertThat(violations.size()).isEqualTo(1);
+		for(ConstraintViolation<Summary> violation : violations) {
+			Object annotation = violation.getConstraintDescriptor().getAnnotation();
+			assertThat(annotation).isInstanceOf(NotNull.class);
+	}
+	}
+	
+	@Test
+	public void testValidationFailMonthNull() {
+		Summary summary = new Summary();
+		summary.setYear(2023);
+		summary.setDay(15);
+		summary.setGenre("食費");
+		summary.setMoney(300);
+		
+		Set<ConstraintViolation<Summary>> violations = validator.validate(summary);
+		assertThat(violations.size()).isEqualTo(1);
+		for(ConstraintViolation<Summary> violation : violations) {
+			Object annotation = violation.getConstraintDescriptor().getAnnotation();
+			assertThat(annotation).isInstanceOf(NotNull.class);
+	}
+	}
+
 
 	@Test
 	public void testValidationFailMonthMin() {
@@ -58,6 +91,7 @@ private Validator validator;
 	}
 	}
 	
+	
 	@Test
 	public void testValidationFailMonthMax() {
 		Summary summary = new Summary();
@@ -72,6 +106,22 @@ private Validator validator;
 		for(ConstraintViolation<Summary> violation : violations) {
 			Object annotation = violation.getConstraintDescriptor().getAnnotation();
 			assertThat(annotation).isInstanceOf(Max.class);
+	}
+	}
+	
+	@Test
+	public void testValidationFailDayNull() {
+		Summary summary = new Summary();
+		summary.setYear(2023);
+		summary.setMonth(5);
+		summary.setGenre("食費");
+		summary.setMoney(300);
+		
+		Set<ConstraintViolation<Summary>> violations = validator.validate(summary);
+		assertThat(violations.size()).isEqualTo(1);
+		for(ConstraintViolation<Summary> violation : violations) {
+			Object annotation = violation.getConstraintDescriptor().getAnnotation();
+			assertThat(annotation).isInstanceOf(NotNull.class);
 	}
 	}
 	
@@ -106,6 +156,22 @@ private Validator validator;
 		for(ConstraintViolation<Summary> violation : violations) {
 			Object annotation = violation.getConstraintDescriptor().getAnnotation();
 			assertThat(annotation).isInstanceOf(Max.class);
+	}
+	}
+	
+	@Test
+	public void testValidationFailMoneyNull() {
+		Summary summary = new Summary();
+		summary.setYear(2023);
+		summary.setMonth(5);
+		summary.setDay(15);
+		summary.setGenre("食費");
+		
+		Set<ConstraintViolation<Summary>> violations = validator.validate(summary);
+		assertThat(violations.size()).isEqualTo(1);
+		for(ConstraintViolation<Summary> violation : violations) {
+			Object annotation = violation.getConstraintDescriptor().getAnnotation();
+			assertThat(annotation).isInstanceOf(NotNull.class);
 	}
 	}
 	
